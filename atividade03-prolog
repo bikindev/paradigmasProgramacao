@@ -37,4 +37,22 @@ Nota de 0.0 a 4.9 = Reprovado
 situacao(Aluno):- (   (   nota(Aluno,Nota), Nota >= 7, write('Aprovado'));
     (   (nota(Aluno,Nota), Nota >= 5), (nota(Aluno,Nota), Nota =< 6.9), write('Recuperação'));
 	(   nota(Aluno,Nota), Nota < 5, write('Reprovado'))).
+	
+%questao 3
+remover(X, [X|L], L).
+remover(X, [X1|L], [X1|L1]):- remover(X, L, L1), !.
+
+%questao 4
+iguais([], []).
+iguais([X|T1], [Y|T2]):- X =:= Y, iguais(T1, T2).
+
+%questao 5
+% inverte a lista e compara se X é igual ao primeiro elemento da nova lista
+append([], Lista, Lista). % concatenar listas
+append([H|L1], L2, [H|L3]):- append(L1,L2,L3).
+
+inverte([],[]).
+inverte([H|T], L):- inverte(T, NovaLista), append(NovaLista, [H], L).
+
+ultimo(L, X):- inverte(L, [H|_]), X =:= H.
 
